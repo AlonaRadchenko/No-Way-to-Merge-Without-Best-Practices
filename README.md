@@ -1,5 +1,5 @@
 # No-Way-to-Merge-Without-Best-Practices
-Best practices for JavaScript codding to make your mentor happier.
+Best practices for JavaScript coding to make your mentor happier.
 
 ## ToC
 
@@ -2367,8 +2367,6 @@ Best practices for JavaScript codding to make your mentor happier.
       return 'search your feelings, you know it to be foo';
     }
     ```
-
-    [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
 
 **[ ↑ to ToC ↑ ](#table-of-contents)**
 
