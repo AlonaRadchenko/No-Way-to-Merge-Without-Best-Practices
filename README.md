@@ -553,7 +553,7 @@ Best practices for JavaScript codding to make your mentor happier.
     ```
 
   <a name="strings--eval"></a><a name="6.5"></a>
-  - [.4](#strings--eval) Never use `eval()` on a string; it opens too many vulnerabilities.
+  - [5.4](#strings--eval) Never use `eval()` on a string; it opens too many vulnerabilities.
   <a name="strings--escaping"></a>
   - [5.5](#strings--escaping) Do not unnecessarily escape characters in strings.
 
