@@ -455,6 +455,170 @@ Other Best Practice Guides
 
 **[⬆ back to top](#table-of-contents)**
 
+## Refactoring
+
+  <a name="refactoring--boy-scout"></a><a name="11.1"></a>
+  - [11.1](#refactoring--boy-scout) **Boy Scout Rule**: Always leave the campground cleaner than you found it.
+
+    > Why? Small, continuous improvements prevent technical debt from accumulating.
+
+    ```python
+    # When you see this...
+    def calc(x, y):
+        return x * 0.1 + y
+
+    # Refactor to this
+    def calculate_total_with_tax(subtotal, tax_amount):
+        TAX_RATE = 0.1
+        return subtotal * TAX_RATE + tax_amount
+    ```
+
+  <a name="refactoring--safe-steps"></a><a name="11.2"></a>
+  - [11.2](#refactoring--safe-steps) **Refactor in Small Steps**: Make small changes and test frequently.
+
+    ```bash
+    # Good refactoring workflow
+    git checkout -b refactor/extract-user-service
+    # Make small change
+    git add . && git commit -m "Extract user validation logic"
+    # Run tests
+    npm test
+    # Make next small change
+    git add . && git commit -m "Extract user persistence logic"
+    # Run tests again
+    npm test
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Dependencies
+
+  <a name="dependencies--minimize"></a><a name="12.1"></a>
+  - [12.1](#dependencies--minimize) **Minimize Dependencies**: Every dependency is a liability.
+
+    > Why? Dependencies can introduce security vulnerabilities, bugs, and maintenance overhead.
+
+    ```json
+    // bad - unnecessary dependencies
+    {
+      "dependencies": {
+        "lodash": "^4.17.21",
+        "moment": "^2.29.4",
+        "left-pad": "^1.3.0"
+      }
+    }
+
+    // good - use built-in alternatives when possible
+    {
+      "dependencies": {
+        "date-fns": "^2.29.3"  // lighter alternative to moment
+        // Use built-in Array methods instead of lodash
+        // Use String.padStart() instead of left-pad
+      }
+    }
+    ```
+
+  <a name="dependencies--audit"></a><a name="12.2"></a>
+  - [12.2](#dependencies--audit) **Regular Audits**: Keep dependencies updated and secure.
+
+    ```bash
+    # Check for vulnerabilities
+    npm audit
+    npm audit fix
+
+    # Keep dependencies updated
+    npm outdated
+    npm update
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Development Workflow
+
+  <a name="workflow--feature-branches"></a><a name="13.1"></a>
+  - [13.1](#workflow--feature-branches) **Use Feature Branches**: Isolate work and enable parallel development.
+
+    ```bash
+    # Create feature branch
+    git checkout -b feature/user-authentication
+    
+    # Work on feature
+    git add . && git commit -m "Add login form"
+    git add . && git commit -m "Add password validation"
+    
+    # Push and create pull request
+    git push origin feature/user-authentication
+    ```
+
+  <a name="workflow--continuous-integration"></a><a name="13.2"></a>
+  - [13.2](#workflow--continuous-integration) **Continuous Integration**: Automate testing and deployment.
+
+    ```yaml
+    # .github/workflows/ci.yml
+    name: CI
+    on: [push, pull_request]
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v2
+          - name: Setup Node.js
+            uses: actions/setup-node@v2
+            with:
+              node-version: '16'
+          - run: npm ci
+          - run: npm run lint
+          - run: npm test
+          - run: npm run build
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Communication
+
+  <a name="communication--clear-pr"></a><a name="14.1"></a>
+  - [14.1](#communication--clear-pr) **Write Clear Pull Requests**: Help reviewers understand your changes.
+
+    ```markdown
+    ## What does this PR do?
+    Adds user authentication with JWT tokens
+
+    ## How to test?
+    1. Start the server: `npm run dev`
+    2. Navigate to `/login`
+    3. Try logging in with test credentials
+
+    ## Checklist
+    - [x] Tests added/updated
+    - [x] Documentation updated
+    - [x] No breaking changes
+    ```
+
+  <a name="communication--meaningful-issues"></a><a name="14.2"></a>
+  - [14.2](#communication--meaningful-issues) **Report Issues Clearly**: Provide context and steps to reproduce.
+
+    ```markdown
+    ## Bug Report
+
+    **Expected Behavior**
+    User should be redirected to dashboard after login
+
+    **Actual Behavior**
+    User sees blank page after login
+
+    **Steps to Reproduce**
+    1. Go to `/login`
+    2. Enter valid credentials
+    3. Click "Login"
+
+    **Environment**
+    - Browser: Chrome 91
+    - OS: macOS Big Sur
+    - Node.js: 16.14.0
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
 ## Resources
 
 **Books**
